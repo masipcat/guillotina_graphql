@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "guillotina_graphql"
+version = "0.1.0"
+description = ""
+authors = ["Jordi Masip <jordi@masip.cat>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+ariadne = "^0.12.0"
+guillotina = "^6.0.8"
+
+[tool.poetry.dev-dependencies]
+pytest = "~6.0.0"
+guillotina = {extras = ["test"], version = "^6.0.8"}
+
+[tool.isort]
+force_single_line = "True"
+sections = ["THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER", "STDLIB"]
+no_lines_before = ["LOCALFOLDER", "THIRDPARTY", "FIRSTPARTY", "STDLIB"]
+force_alphabetical_sort = "True"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
