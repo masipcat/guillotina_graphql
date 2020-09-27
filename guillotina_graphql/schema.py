@@ -61,11 +61,11 @@ def _get_input_search_query():
         for field, value in search_query_fields.items()
     )
     return f"""
-        input SearchQuery {{
-            _size: Int = 10
-            {search_query_raw}
-        }}
-    """
+input SearchQuery {{
+    _size: Int = 10
+    {search_query_raw}
+}}
+"""
 
 
 def _get_models():
@@ -74,24 +74,32 @@ def _get_models():
     model_types = []
     for model, types in result_types.items():
         model_types += [
-            f"type {model} " + "{\n    " + dict_types_to_graphql_str(types) + "}"
+            f"""
+type {model} implements IItem {{
+    {dict_types_to_graphql_str(types)}
+}}"""
         ]
     model_types_str = "\n".join(model_types)
 
     schema = f"""
+interface IItem {{
+    {dict_types_to_graphql_str(result_types['Item'])}
+}}
+
 {model_types_str}
+
 union SearchResult = {" | ".join(result_types)}
-    """
+"""
     return schema
 
 
 def get_type_defs():
     return f"""
-        {_get_input_search_query()}
+{_get_input_search_query()}
 
-        {_get_models()}
+{_get_models()}
 
-        type Query {{
-            search(query: SearchQuery): [SearchResult]
-        }}
-    """
+type Query {{
+    search(query: SearchQuery): [SearchResult]
+}}
+"""

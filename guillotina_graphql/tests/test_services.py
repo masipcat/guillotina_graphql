@@ -8,7 +8,7 @@ pytestmark = pytest.mark.asyncio
 
 
 @pytest.mark.skipif(DATABASE != "postgres", reason="Only works with pg")
-async def test_query(custom_requester):
+async def test_search(custom_requester):
     async with custom_requester as requester:
         resp, status = await requester(
             "POST",

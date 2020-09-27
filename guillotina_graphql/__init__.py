@@ -9,6 +9,7 @@ def includeme(root):
     """
     custom application initialization here
     """
+    configure.scan("guillotina_graphql.resolvers")
     configure.scan("guillotina_graphql.services")
 
 
