@@ -20,6 +20,7 @@ CATALOG_TO_GRAPHQL_MAPPING = {
     "text": "String",
     "path": "String",
     "int": "Int",
+    "float": "Float",
     "date": "String",
     "boolean": "Boolean",
 }
