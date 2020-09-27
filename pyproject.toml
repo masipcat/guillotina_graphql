@@ -2,6 +2,7 @@
 name = "guillotina_graphql"
 version = "0.1.0"
 description = ""
+readme = "README.md"
 authors = ["Jordi Masip <jordi@masip.cat>"]
 license = "MIT"
 
